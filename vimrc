@@ -1,5 +1,5 @@
 "include other file
-source abbreviations.vim
+source $HOME/.vim/abbreviations.vim
 set autoindent
 set nu "enable line number
 syntax enable "enable syntax
