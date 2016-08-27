@@ -1,6 +1,7 @@
 "include other file
 source $HOME/.vim/abbreviations.vim
 set autoindent
+filetype on " enable file type
 set nu "enable line number
 syntax enable "enable syntax
 colorscheme slate "scheme
@@ -28,3 +29,9 @@ highlight SignColumn guibg=darkgrey
 sign define piet text=>> texthl=SignColumn
 nnoremap <F7> :exe ":sign place 2 line=" .line(".") "name=piet file=" . expand("%:p")<cr>
 nnoremap <C-F7> :sign unplace 2<cr>
+"using file template
+autocmd BufNewFile *  silent! call LoadTemplate("%:e")
+function! LoadTemplate(extension)
+	silent! execute "0r $HOME/.vim/templates/".a:extension.".tpl"
+	silent! :execute "source $HOME/.vim/templates/".a:extension.".pattens.tpl"
+endfunction
