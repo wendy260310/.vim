@@ -15,3 +15,16 @@ set cursorcolumn
 "spell check options
 set spell 
 set spellsuggest=5
+"file op map
+nnoremap <C-w> :w<cr> "<c-s> may hang terminal
+vnoremap <C-c> y
+inoremap <C-v> <ESC>P
+vnoremap <C-x> x
+set isfname +=32 " file name can contains space
+"search 
+set incsearch
+"marks
+highlight SignColumn guibg=darkgrey
+sign define piet text=>> texthl=SignColumn
+nnoremap <F7> :exe ":sign place 2 line=" .line(".") "name=piet file=" . expand("%:p")<cr>
+nnoremap <C-F7> :sign unplace 2<cr>
