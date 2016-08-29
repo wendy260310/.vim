@@ -30,10 +30,11 @@ sign define piet text=>> texthl=SignColumn
 nnoremap <F7> :exe ":sign place 2 line=" .line(".") "name=piet file=" . expand("%:p")<cr>
 nnoremap <C-F7> :sign unplace 2<cr>
 "using file template
-autocmd BufNewFile *  silent! call LoadTemplate("%:e")
-function! LoadTemplate(extension)
-	silent! execute "0r $HOME/.vim/templates/".a:extension.".tpl"
-	silent! :execute "source $HOME/.vim/templates/".a:extension.".pattens.tpl"
+autocmd BufNewFile *  call LoadTemplate()
+function! LoadTemplate()
+	execute "0r $HOME/.vim/templates/".expand("%:e").".tpl"
+	execut "%s/fileName/".expand('%:t')."/g"
+	execut "%s/className/".expand('%:t:r')."/g"
 endfunction
 "using sessions
 set sessionoptions =buffers
@@ -52,3 +53,6 @@ set foldenable
 nnoremap <space> za
 "indent
 set cindent
+"dictionary
+autocmd FileType * silent! execute 'setlocal dict=$HOME/.vim/dict/'.&filetype.'.dict'
+set complete+=k

@@ -7,22 +7,20 @@ if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
   let s:wipebuf = bufnr('%')
 endif
 set shortmess=aoO
-badd +0 ~/.vim/vimrc
-argglobal
-silent! argdel *
-argadd ~/.vim/vimrc
-edit ~/.vim/vimrc
+badd +0 ~/abc.java
+args ~/abc.java
+edit ~/abc.java
 set splitbelow splitright
 set nosplitbelow
 set nosplitright
 wincmd t
 set winheight=1 winwidth=1
 argglobal
-let s:l = 33 - ((32 * winheight(0) + 29) / 58)
+let s:l = 4 - ((3 * winheight(0) + 27) / 54)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-33
+4
 normal! 0
 if exists('s:wipebuf')
   silent exe 'bwipe ' . s:wipebuf
