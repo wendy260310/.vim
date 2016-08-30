@@ -2,6 +2,7 @@
 source $HOME/.vim/abbreviations.vim
 set autoindent
 filetype on " enable file type
+filetype indent on "enable file indent
 set nu "enable line number
 syntax enable "enable syntax
 colorscheme slate "scheme
@@ -32,9 +33,9 @@ nnoremap <C-F7> :sign unplace 2<cr>
 "using file template
 autocmd BufNewFile *  call LoadTemplate()
 function! LoadTemplate()
-	execute "0r $HOME/.vim/templates/".expand("%:e").".tpl"
-	execut "%s/fileName/".expand('%:t')."/g"
-	execut "%s/className/".expand('%:t:r')."/g"
+	silent! execute "0r $HOME/.vim/templates/".expand("%:e").".tpl"
+	silent! execute "%s/fileName/".expand('%:t')."/g"
+	silent! execute "%s/className/".expand('%:t:r')."/g"
 endfunction
 "using sessions
 set sessionoptions =buffers
@@ -56,3 +57,5 @@ set cindent
 "dictionary
 autocmd FileType * silent! execute 'setlocal dict=$HOME/.vim/dict/'.&filetype.'.dict'
 set complete+=k
+"auto reload
+set autoread
